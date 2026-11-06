@@ -21,13 +21,14 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         input: {
           main: path.resolve(__dirname, "index.html"),
-          services: path.resolve(__dirname, "services.html"),
+          services: path.resolve(__dirname, "services/index.html"),
         },
       },
     },
     plugins: [
       react(),
       tailwindcss(),
+      cleanServicesRoute(),
       figmaSiteConfiguration(siteConfiguration),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
@@ -53,6 +54,35 @@ export default defineConfig(({ mode }) => {
     },
   }
 })
+
+/**
+ * Serves the Services page at /services without the .html extension in dev and
+ * preview. Production builds emit services/index.html, so static hosts serve
+ * the same clean URL.
+ */
+function cleanServicesRoute(): Plugin {
+  function rewrite(url: string): string {
+    const [pathname, search] = url.split("?")
+    if (pathname !== "/services") return url
+    return `/services/index.html${search ? `?${search}` : ""}`
+  }
+
+  return {
+    name: "clean-services-route",
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        if (req.url) req.url = rewrite(req.url)
+        next()
+      })
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        if (req.url) req.url = rewrite(req.url)
+        next()
+      })
+    },
+  }
+}
 
 type FigmaSiteConfiguration = {
   title?: string

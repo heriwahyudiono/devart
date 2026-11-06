@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 
 const A = "/assets"
 
@@ -57,6 +57,13 @@ const projects = [
   },
 ]
 
+const footerServices = [
+  "Website Development",
+  "UI/UX Design",
+  "Mobile Development",
+  "Graphic Design",
+]
+
 const markers = [
   ["52%", "27%"],
   ["62%", "48%"],
@@ -100,17 +107,25 @@ function ActionButton({
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [languageOpen, setLanguageOpen] = useState(false)
   const [language, setLanguage] = useState("Select Language")
+  const [selectedService, setSelectedService] = useState("")
+  const [submitted, setSubmitted] = useState(false)
 
   const go = (id: string) => {
     setMenuOpen(false)
     scrollToSection(id)
   }
 
+  const submitForm = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setSubmitted(true)
+  }
+
   return (
     <main>
       <section className="hero" id="home">
-        <header className="nav-shell">
+        <header className="site-header">
           <button
             className="logo-button"
             onClick={() => go("home")}
@@ -118,36 +133,62 @@ export default function App() {
           >
             <img src={`${A}/870e1.png`} alt="DevArt" />
           </button>
+
           <nav
-            className={menuOpen ? "nav-links open" : "nav-links"}
-            aria-label="Main navigation"
+            className={menuOpen ? "main-nav nav-open" : "main-nav"}
+            aria-label="Primary navigation"
           >
             <button onClick={() => go("home")}>Home</button>
-            <button onClick={() => go("services")} className="service-link">
-              Services <img src={`${A}/43822.svg`} alt="" />
+            <button
+              onClick={() => {
+                setMenuOpen(false)
+                window.location.href = "/services"
+              }}
+            >
+              Services
             </button>
             <button onClick={() => go("about")}>About</button>
             <button onClick={() => go("portfolio")}>Portfolio</button>
             <button onClick={() => go("contact")}>Contact Us</button>
           </nav>
-          <label className="language">
-            <span className="sr-only">Language</span>
-            <select
-              value={language}
-              onChange={(event) => setLanguage(event.target.value)}
+
+          <div className="language-wrap">
+            <button
+              className="language-button"
+              onClick={() => setLanguageOpen((open) => !open)}
+              aria-expanded={languageOpen}
             >
-              <option>Select Language</option>
-              <option>English</option>
-              <option>Bahasa Indonesia</option>
-            </select>
-            <img src={`${A}/74397.svg`} alt="" />
-          </label>
+              <span>{language}</span>
+              <img
+                className={languageOpen ? "language-arrow open" : "language-arrow"}
+                src={`${A}/74397.svg`}
+                alt=""
+              />
+            </button>
+            {languageOpen && (
+              <div className="language-menu">
+                {["English", "Bahasa Indonesia"].map((option) => (
+                  <button
+                    key={option}
+                    onClick={() => {
+                      setLanguage(option)
+                      setLanguageOpen(false)
+                    }}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
           <button
-            className="menu-toggle"
+            className="menu-button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
-            aria-label="Toggle navigation"
+            aria-label="Toggle menu"
           >
+            <span />
             <span />
             <span />
           </button>
@@ -353,81 +394,140 @@ export default function App() {
         </div>
       </section>
 
-      <section className="cta" id="contact">
-        <div className="cta-copy">
-          <div className="studio-pill">
-            <img src={`${A}/e6237.svg`} alt="" />
-            DIGITAL CREATIVE STUDIO
+      <div className="services-footer">
+        <section className="section-shell contact" id="contact">
+          <div className="contact-info">
+            <div className="contact-heading">
+              <span>Contact</span>
+              <h2>Let’s Talk</h2>
+              <p>
+                Ready to bring your next project to life? Reach out and we’ll
+                help you choose the right service.
+              </p>
+            </div>
+            <address>
+              <a href="mailto:hello@devart.com">
+                <img src={`${A}/f4ad8.svg`} alt="" /> hello@devart.com
+              </a>
+              <a href="tel:+6281234567890">
+                <img src={`${A}/14651.svg`} alt="" /> +62 812 3456 7890
+              </a>
+              <p>
+                <img src={`${A}/b9e0a.svg`} alt="" /> Jakarta, Indonesia
+              </p>
+            </address>
+            <div className="socials">
+              <a href="https://linkedin.com" aria-label="LinkedIn">
+                <img src={`${A}/1d9d0.svg`} alt="" />
+              </a>
+              <a href="https://instagram.com" aria-label="Instagram">
+                <img src={`${A}/1c7e8.svg`} alt="" />
+              </a>
+              <a href="https://github.com" aria-label="GitHub">
+                <img src={`${A}/e0a5d.svg`} alt="" />
+              </a>
+            </div>
           </div>
-          <h2>Let’s Turn Your Vision Into Reality.</h2>
-          <p>
-            From creative design to powerful development, we’re here to bring
-            your next big idea to life.
-          </p>
-          <ActionButton
-            variant="light"
-            onClick={() =>
-              (window.location.href = "mailto:devartcreativestudio@gmail.com")
-            }
-          >
-            Let’s Connect
-          </ActionButton>
-        </div>
-        <div className="cta-art">
-          <img src={`${A}/8eb78.png`} alt="" />
-        </div>
-      </section>
 
-      <footer>
-        <div className="footer-content section-wrap">
-          <div className="footer-brand">
-            <img className="footer-logo" src={`${A}/870e1.png`} alt="DevArt" />
-            <div>
-              {["5ab9f.svg", "8a747.svg", "30e15.svg", "26e86.svg"].map(
-                (icon) => (
-                  <a href="#contact" key={icon} aria-label="Social link">
-                    <img src={`${A}/${icon}`} alt="" />
-                  </a>
-                ),
-              )}
+          <form className="contact-form" onSubmit={submitForm}>
+            <div className="form-row">
+              <label>
+                <span>Name</span>
+                <input name="name" placeholder="Your name" required />
+              </label>
+              <label>
+                <span>Email</span>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </label>
+            </div>
+            <label>
+              <span>Service</span>
+              <select
+                name="service"
+                value={selectedService}
+                onChange={(event) => setSelectedService(event.target.value)}
+                required
+              >
+                <option value="" disabled>
+                  Select service
+                </option>
+                {footerServices.map((title) => (
+                  <option key={title}>{title}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea
+                name="message"
+                placeholder="Tell us about your project..."
+                required
+              />
+            </label>
+            <div className="form-actions">
+              <p className={submitted ? "success-message" : ""}>
+                {submitted
+                  ? "Thanks! Your message is ready for our team."
+                  : "We’ll get back to you within 1–2 business days."}
+              </p>
+              <button className="action-button" type="submit">
+                <img src={`${A}/210e5.svg`} alt="" />
+                <span>Send Message</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <footer className="section-shell footer">
+          <div className="footer-top">
+            <div className="footer-brand">
+              <img src={`${A}/870e1.png`} alt="DevArt" />
+              <p>
+                DevArt helps businesses build websites, apps, and digital
+                experiences that convert.
+              </p>
+            </div>
+            <div className="footer-links">
+              <div>
+                <strong>Services</strong>
+                {footerServices.map((title) => (
+                  <button key={title} onClick={() => scrollToSection("services")}>
+                    {title}
+                  </button>
+                ))}
+              </div>
+              <div>
+                <strong>Company</strong>
+                <button onClick={() => scrollToSection("about")}>About</button>
+                <button onClick={() => scrollToSection("portfolio")}>
+                  Portfolio
+                </button>
+                <button onClick={() => scrollToSection("contact")}>
+                  Contact Us
+                </button>
+              </div>
+              <div>
+                <strong>Follow</strong>
+                <a href="https://linkedin.com">LinkedIn</a>
+                <a href="https://instagram.com">Instagram</a>
+                <a href="https://github.com">GitHub</a>
+              </div>
             </div>
           </div>
-          <div className="footer-links">
+          <div className="footer-bottom">
+            <p>© 2026 DevArt. All rights reserved.</p>
             <div>
-              <h3>Services</h3>
-              <a href="#services">Mobile Developer</a>
-              <a href="#services">Website Developer</a>
-              <a href="#services">UI/UX Design</a>
-              <a href="#services">Graphic Design</a>
-            </div>
-            <div>
-              <h3>Resources</h3>
-              <a href="#home">Academy</a>
-              <a href="#home">Blog</a>
-              <a href="#home">Themes</a>
-              <a href="#home">Hosting</a>
-              <a href="#contact">Support</a>
-            </div>
-            <div>
-              <h3>Navigation</h3>
-              <a href="#about">About Us</a>
-              <a href="#services">Services</a>
-              <a href="#portfolio">Portfolio</a>
-              <a href="#contact">Contact Us</a>
+              <button>Privacy Policy</button>
+              <button>Terms of Service</button>
             </div>
           </div>
-          <a className="email-box" href="mailto:devartcreativestudio@gmail.com">
-            <strong>Hubungi Kami</strong>
-            <span>devartcreativestudio@gmail.com</span>
-          </a>
-        </div>
-        <div className="footer-waves" aria-hidden="true">
-          <img src={`${A}/e42c7.svg`} alt="" />
-          <img src={`${A}/0c2b5.svg`} alt="" />
-          <img src={`${A}/a8b95.svg`} alt="" />
-        </div>
-        <p className="copyright">© 2026 DEVART. All rights reserved.</p>
-      </footer>
+        </footer>
+      </div>
     </main>
   )
 }

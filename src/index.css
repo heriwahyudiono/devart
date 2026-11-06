@@ -1,6 +1,13 @@
 @import 'tailwindcss';
 
 @font-face {
+  font-family: 'Inter:Bold';
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
   font-family: 'Inter:Medium';
   src: url('https://static.figma.com/font/Inter_1') format('woff2');
   font-style: normal;
@@ -77,7 +84,7 @@
 }
 
 /* ==========================================================================
-Mobile-first base — Home (default for phones, < 821px)
+Mobile-first base â Home (default for phones, < 821px)
 ========================================================================== */
 
 main {
@@ -95,6 +102,7 @@ main {
 .hero {
   position: relative;
   min-height: auto;
+  padding-top: 14px;
   padding-bottom: 56px;
   overflow: hidden;
   background: radial-gradient(
@@ -199,7 +207,7 @@ main {
   display: flex;
   width: 100%;
   margin-inline: auto;
-  padding: 104px 20px 0;
+  padding: 38px 20px 0;
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -451,10 +459,12 @@ main {
 
 .explore-button img {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  top: 0;
+  left: -12.07%;
+  width: 123.79%;
+  max-width: none;
+  height: auto;
+  object-fit: fill;
 }
 
 .explore-button span {
@@ -1072,6 +1082,7 @@ footer {
   .hero {
     position: relative;
     min-height: 716px;
+    padding-top: 35px;
     background: radial-gradient(ellipse 38% 25% at 50% -2%, #f70080 0%, #fa60af 30%, #fdbfdf 67%, #fff 100%);
   }
 
@@ -1169,7 +1180,7 @@ footer {
     display: flex;
     width: min(850px, calc(100% - 40px));
     margin-inline: auto;
-    padding-top: 149px;
+    padding-top: 66px;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -1415,10 +1426,12 @@ footer {
 
   .explore-button img {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    top: 0;
+    left: -12.07%;
+    width: 123.79%;
+    max-width: none;
+    height: auto;
+    object-fit: fill;
   }
 
   .explore-button span {
@@ -2026,7 +2039,7 @@ footer {
   }
 
   .hero-content {
-    padding: 149px 0 0;
+    padding: 66px 0 0;
   }
 
   .hero-actions {
@@ -2115,7 +2128,7 @@ footer {
     justify-self: center;
   }
 
-  /* Tablet refinements — Home (821px–1100px). Desktop above 1100px is
+  /* Tablet refinements â Home (821pxâ1100px). Desktop above 1100px is
   untouched and identical to the original design. */
   .nav-links {
     gap: 25px;
@@ -2180,3 +2193,745 @@ footer {
   }
 }
 
+/* ==========================================================================
+   Contact + footer — same design as the Services page (src/services/index.css).
+   Scoped under .services-footer so the Home design stays untouched.
+   ========================================================================== */
+
+.services-footer {
+  width: 100%;
+  color: #2c3847;
+}
+
+.services-footer footer {
+  position: relative;
+  min-height: 0;
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.services-footer .section-shell {
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid rgb(239 239 239 / 60%);
+}
+
+/* ------------------------------- Contact --------------------------------- */
+
+.services-footer .contact {
+  display: grid;
+  width: 100%;
+  padding: 44px 16px;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: start;
+  border-top: 1px solid rgb(239 239 239 / 60%);
+}
+
+.services-footer .contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.services-footer .contact-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  letter-spacing: 0.5px;
+}
+
+.services-footer .contact-heading > span {
+  color: #f70080;
+  font-family: 'Inter:Bold', Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.services-footer .contact-heading h2 {
+  color: #f70080;
+  font-family: 'Inter:Bold', Inter, sans-serif;
+  font-size: clamp(26px, 7.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.services-footer .contact-heading p {
+  color: #414141;
+  font-family: 'Inter:Medium', Inter, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 23px;
+}
+
+.services-footer .contact address {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #2c3847;
+  font-family: 'Inter:Medium', Inter, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.services-footer .contact address a,
+.services-footer .contact address p {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.services-footer .contact address img {
+  width: 18px;
+  height: 18px;
+}
+
+.services-footer .socials {
+  display: flex;
+  gap: 12px;
+}
+
+.services-footer .socials a {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid rgb(239 239 239 / 60%);
+  border-radius: 50%;
+  background: white;
+}
+
+.services-footer .socials a:hover {
+  transform: translateY(-3px);
+  border-color: #f70080;
+  box-shadow: 0 8px 20px rgb(247 0 128 / 15%);
+}
+
+.services-footer .socials img {
+  width: 18px;
+  height: 18px;
+}
+
+/* --------------------------------- Form ---------------------------------- */
+
+.services-footer .contact-form {
+  display: flex;
+  padding: 18px;
+  flex-direction: column;
+  gap: 14px;
+  border: 1px solid rgb(239 239 239 / 60%);
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 20px 15px rgb(99 122 166 / 10%);
+}
+
+.services-footer .form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.services-footer .contact-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.services-footer .contact-form label > span {
+  color: #2c3847;
+  font-family: 'Inter:Semi Bold', Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.services-footer .contact-form input,
+.services-footer .contact-form select,
+.services-footer .contact-form textarea {
+  width: 100%;
+  border: 1px solid rgb(239 239 239 / 80%);
+  border-radius: 10px;
+  background: #fff;
+  color: #2c3847;
+  font-family: 'Inter:Regular', Inter, sans-serif;
+  font-size: 14px;
+}
+
+.services-footer .contact-form input,
+.services-footer .contact-form select {
+  height: 46px;
+  padding: 0 14px;
+}
+
+.services-footer .contact-form select {
+  appearance: none;
+  background: url('/assets/0a84f.svg') right 14px center / 20px 20px no-repeat;
+}
+
+.services-footer .contact-form textarea {
+  height: 110px;
+  padding: 14px;
+  resize: vertical;
+}
+
+.services-footer .contact-form input:focus,
+.services-footer .contact-form select:focus,
+.services-footer .contact-form textarea:focus {
+  border-color: #f70080;
+  box-shadow: 0 0 0 3px rgb(247 0 128 / 10%);
+}
+
+.services-footer .contact-form ::placeholder,
+.services-footer .contact-form select:invalid {
+  color: #828282;
+}
+
+.services-footer .form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.services-footer .form-actions > p {
+  color: #828282;
+  font-family: 'Inter:Regular', Inter, sans-serif;
+  font-size: 13px;
+}
+
+.services-footer .form-actions .success-message {
+  color: #2c8a53;
+}
+
+.services-footer .form-actions .action-button {
+  width: 100%;
+}
+
+/* -------------------------------- Button --------------------------------- */
+
+.services-footer .action-button {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 50px;
+  padding: 10px 22px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  overflow: hidden;
+  border: 1px solid #f70080;
+  border-radius: 10px;
+  background: #f70080;
+  color: white;
+  font-family: 'Inter:Semi Bold', Inter, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.services-footer .action-button:hover {
+  background: white;
+  color: #f70080;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgb(247 0 128 / 20%);
+}
+
+.services-footer .action-button img {
+  width: 26px;
+  height: 25px;
+}
+
+.services-footer .action-button:hover img {
+  filter: invert(17%) sepia(96%) saturate(5799%) hue-rotate(321deg) brightness(96%) contrast(107%);
+}
+
+/* -------------------------------- Footer --------------------------------- */
+
+.services-footer .footer {
+  width: 100%;
+  padding: 44px 16px 28px;
+  border-top: 1px solid rgb(239 239 239 / 60%);
+}
+
+.services-footer .footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.services-footer .footer-brand {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.services-footer .footer-brand > img {
+  width: 69px;
+  height: 25px;
+  object-fit: cover;
+}
+
+.services-footer .footer-brand p {
+  color: #414141;
+  font-family: 'Inter:Medium', Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  line-height: 22px;
+}
+
+.services-footer .footer-links {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 20px;
+}
+
+.services-footer .footer-links > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: 'Inter:Medium', Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.services-footer .footer-links strong {
+  color: #f70080;
+  font-family: 'Inter:Bold', Inter, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.services-footer .footer-links a,
+.services-footer .footer-links button {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+}
+
+.services-footer .footer-bottom {
+  display: flex;
+  margin-top: 28px;
+  padding-top: 18px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid rgb(239 239 239 / 60%);
+  font-size: 13px;
+}
+
+.services-footer .footer-bottom > p {
+  color: #828282;
+  font-family: 'Inter:Regular', Inter, sans-serif;
+}
+
+.services-footer .footer-bottom > div {
+  display: flex;
+  gap: 16px;
+  font-family: 'Inter:Medium', Inter, sans-serif;
+  font-weight: 500;
+}
+
+/* ------------------------------- Desktop --------------------------------- */
+
+@media (min-width: 901px) {
+  .services-footer .section-shell {
+    width: min(calc(100% - 48px), 1200px);
+    margin: 0 auto;
+    border-top: 1px solid rgb(239 239 239 / 60%);
+  }
+
+  .services-footer .contact {
+    padding: 80px 0;
+    grid-template-columns: 420px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .services-footer .contact-info {
+    gap: 32px;
+  }
+
+  .services-footer .contact-heading {
+    gap: 12px;
+    letter-spacing: 1px;
+  }
+
+  .services-footer .contact-heading > span {
+    font-size: 14px;
+  }
+
+  .services-footer .contact-heading h2 {
+    font-size: 42px;
+    line-height: normal;
+  }
+
+  .services-footer .contact-heading p {
+    font-size: 18px;
+    line-height: normal;
+  }
+
+  .services-footer .contact address {
+    font-size: 16px;
+  }
+
+  .services-footer .contact address img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .services-footer .contact address a:hover {
+    color: #f70080;
+  }
+
+  .services-footer .socials a {
+    width: 44px;
+    height: 44px;
+  }
+
+  .services-footer .socials img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .services-footer .footer-brand > img {
+    width: 79px;
+    height: 28px;
+  }
+
+  .services-footer .action-button {
+    min-width: 231px;
+    min-height: 59px;
+    padding: 10px 20px;
+    gap: 11px;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .services-footer .action-button img {
+    width: 33px;
+    height: 31px;
+  }
+
+  .services-footer .contact-form {
+    padding: 24px;
+    gap: 16px;
+    box-shadow: 0 30px 15px rgb(99 122 166 / 10%);
+  }
+
+  .services-footer .form-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .services-footer .contact-form input,
+  .services-footer .contact-form select {
+    height: 48px;
+  }
+
+  .services-footer .contact-form textarea {
+    height: 120px;
+  }
+
+  .services-footer .form-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .services-footer .form-actions .action-button {
+    width: auto;
+  }
+
+  .services-footer .footer {
+    padding: 64px 0 32px;
+  }
+
+  .services-footer .footer-top {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .services-footer .footer-brand {
+    width: 360px;
+    gap: 16px;
+  }
+
+  .services-footer .footer-brand p {
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: normal;
+  }
+
+  .services-footer .footer-links {
+    display: flex;
+    width: auto;
+    gap: 80px;
+  }
+
+  .services-footer .footer-links > div {
+    font-size: 14px;
+  }
+
+  .services-footer .footer-links button:hover,
+  .services-footer .footer-links a:hover,
+  .services-footer .footer-bottom button:hover {
+    color: #f70080;
+  }
+
+  .services-footer .footer-bottom {
+    margin-top: 40px;
+    padding-top: 24px;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    font-size: 14px;
+  }
+
+  .services-footer .footer-bottom > div {
+    gap: 24px;
+  }
+}
+
+/* -------------------------------- Tablet --------------------------------- */
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .services-footer .contact {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .services-footer .footer-top {
+    gap: 40px;
+  }
+
+  .services-footer .footer-links {
+    gap: 40px;
+  }
+}
+
+/* ==========================================================================
+   Header — same design as the Services page (src/services/index.css).
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 10px;
+  z-index: 50;
+  display: flex;
+  width: calc(100% - 24px);
+  min-height: 52px;
+  margin: 0 auto;
+  padding: 4px 12px 4px 16px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 30px;
+  background: rgb(255 255 255 / 20%);
+  box-shadow: 0 3px 8px rgb(0 0 0 / 15%);
+  backdrop-filter: blur(14px);
+}
+
+.site-header .logo-button {
+  display: flex;
+  width: 69px;
+  height: 25px;
+  align-items: center;
+}
+
+.site-header .logo-button img {
+  width: 69px;
+  height: 25px;
+  object-fit: cover;
+}
+
+.site-header .main-nav {
+  position: absolute;
+  top: 58px;
+  right: 0;
+  left: auto;
+  display: none;
+  width: min(240px, calc(100vw - 24px));
+  padding: 14px;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid rgb(239 239 239 / 80%);
+  border-radius: 16px;
+  background: rgb(255 255 255 / 98%);
+  box-shadow: 0 20px 40px rgb(99 122 166 / 20%);
+  color: #2c3847;
+  font-family: 'Inter:Medium', Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.site-header .main-nav.nav-open {
+  display: flex;
+}
+
+.site-header .main-nav button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  color: inherit;
+  text-align: left;
+}
+
+.site-header .main-nav button:hover {
+  background: #fff0f8;
+  color: #f70080;
+}
+
+.site-header .language-wrap {
+  display: none;
+}
+
+.site-header .menu-button {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 16%);
+}
+
+.site-header .menu-button span {
+  width: 17px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: white;
+}
+
+@media (min-width: 821px) {
+  .site-header {
+    top: 14px;
+    display: grid;
+    width: min(calc(100% - 50px), 1390px);
+    min-height: 48px;
+    padding: 4px 13px 4px 19px;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+
+  .site-header .logo-button {
+    width: 79px;
+    height: 29px;
+  }
+
+  .site-header .logo-button img {
+    width: 79px;
+    height: 28px;
+  }
+
+  .site-header .main-nav {
+    position: static;
+    display: flex;
+    width: auto;
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 52px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: white;
+    font-family: 'Inter:Medium', Inter, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .site-header .main-nav button {
+    width: auto;
+    padding: 0;
+    border-radius: 0;
+    text-align: center;
+  }
+
+  .site-header .main-nav button:hover {
+    background: transparent;
+    color: #364250;
+  }
+
+  .site-header .language-wrap {
+    position: relative;
+    display: block;
+    justify-self: end;
+  }
+
+  .site-header .language-button {
+    display: flex;
+    width: 170px;
+    height: 35px;
+    padding: 0 13px 0 22px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Inter:Medium', Inter, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .site-header .language-button:hover {
+    background: rgb(255 255 255 / 15%);
+  }
+
+  .site-header .language-arrow {
+    width: 20px;
+    height: 20px;
+    transform: rotate(-90deg);
+    transition: transform 300ms ease-out;
+  }
+
+  .site-header .language-arrow.open {
+    transform: rotate(90deg);
+  }
+
+  .site-header .language-menu {
+    position: absolute;
+    top: 42px;
+    right: 0;
+    display: grid;
+    width: 180px;
+    padding: 6px;
+    border: 1px solid rgb(239 239 239 / 80%);
+    border-radius: 12px;
+    background: rgb(255 255 255 / 96%);
+    box-shadow: 0 18px 35px rgb(99 122 166 / 20%);
+  }
+
+  .site-header .language-menu button {
+    padding: 9px 12px;
+    border-radius: 8px;
+    color: #2c3847;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .site-header .language-menu button:hover {
+    background: #fff0f8;
+    color: #f70080;
+  }
+
+  .site-header .menu-button {
+    display: none;
+  }
+}

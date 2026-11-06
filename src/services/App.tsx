@@ -121,6 +121,10 @@ export default function App() {
     setMenuOpen(false);
   };
 
+  const goHome = () => {
+    window.location.href = "/";
+  };
+
   const orderService = (title: string) => {
     setSelectedService(title);
     setSubmitted(false);
@@ -136,7 +140,7 @@ export default function App() {
     <main>
       <section className="hero" id="home">
         <header className="site-header">
-          <button className="logo-button" onClick={() => scrollTo("home")} aria-label="Back to top">
+          <button className="logo-button" onClick={goHome} aria-label="Go to home">
             <img src={`${assets}/870e1.png`} alt="DevArt" />
           </button>
 
@@ -144,7 +148,7 @@ export default function App() {
             className={menuOpen ? "main-nav nav-open" : "main-nav"}
             aria-label="Primary navigation"
           >
-            <button onClick={() => scrollTo("home")}>Home</button>
+            <button onClick={goHome}>Home</button>
             <button onClick={() => scrollTo("services")}>Services</button>
             <button onClick={() => scrollTo("about")}>About</button>
             <button onClick={() => scrollTo("portfolio")}>Portfolio</button>
